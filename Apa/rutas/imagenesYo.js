@@ -40,18 +40,4 @@ yoRutas.post('/update', autentificacion_1.verificarToken, (req, res) => {
         mensaje: 'Imagen actualizada'
     });
 });
-//Eliminar imagen
-// yoRutas.delete('/:id/:name', verificarToken, (req: any, res: Response) => {
-//     const id= req.params.id;
-//     const name= req.params.name;
-//     ImagenesYo.findByIdAndRemove(id, (err, imgBorrar)=>{
-//         if(err) throw err;
-//         res.json({
-//             ok:true,
-//             mensaje: 'Imagen eliminada',
-//             body: imgBorrar
-//         });
-//         fs.unlinkSync(path.resolve(__dirname,'../uploads', 'andres-apa', name ));
-//     })
-// });
 exports.default = yoRutas;

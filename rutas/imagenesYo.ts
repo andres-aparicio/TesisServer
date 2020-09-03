@@ -2,10 +2,6 @@ import { Router, Response } from 'express';
 import { verificarToken } from '../middlewares/autentificacion';
 import { ImagenesYo } from '../modelos/imagenesYo';
 import FileSystemYo from '../clases/fileSystemYo';
-import fs from 'fs';
-import path from 'path';
-
-
 
 const yoRutas = Router();
 const fileSystemyo = new FileSystemYo();
@@ -45,22 +41,4 @@ yoRutas.post('/update', verificarToken, (req: any, res: Response) => {
         mensaje: 'Imagen actualizada'
     });
 });
-
-//Eliminar imagen
-
-// yoRutas.delete('/:id/:name', verificarToken, (req: any, res: Response) => {
-//     const id= req.params.id;
-//     const name= req.params.name;
-
-//     ImagenesYo.findByIdAndRemove(id, (err, imgBorrar)=>{
-//         if(err) throw err;
-//         res.json({
-//             ok:true,
-//             mensaje: 'Imagen eliminada',
-//             body: imgBorrar
-//         });
-//         fs.unlinkSync(path.resolve(__dirname,'../uploads', 'andres-apa', name ));
-//     })
-// });
-
 export default yoRutas;
