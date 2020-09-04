@@ -3,6 +3,7 @@ import { verificarToken } from '../middlewares/autentificacion';
 import { ImagenesYo } from '../modelos/imagenesYo';
 import FileSystemYo from '../clases/fileSystemYo';
 
+
 const yoRutas = Router();
 const fileSystemyo = new FileSystemYo();
 

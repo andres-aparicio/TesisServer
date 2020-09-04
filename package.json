@@ -2,10 +2,9 @@
   "name": "angular-9",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Apa/index.js",
   "scripts": {
-    "dev": "nodemon Apa/index.js",
-    "start": "node Apa/index.js",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
