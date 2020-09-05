@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const autentificacion_1 = require("../middlewares/autentificacion");
-const imagenesYo_1 = require("../modelos/imagenesYo");
+const imagenyo_1 = require("../modelos/imagenyo");
 const fileSystemYo_1 = __importDefault(require("../clases/fileSystemYo"));
 const yoRutas = express_1.Router();
 const fileSystemyo = new fileSystemYo_1.default();
@@ -15,7 +15,7 @@ yoRutas.post('/', autentificacion_1.verificarToken, (req, res) => {
     const file = req.files.img;
     body.img = file.name;
     console.log(file);
-    imagenesYo_1.ImagenesYo.create(body).then(imgYoDB => {
+    imagenyo_1.ImagenesYo.create(body).then(imgYoDB => {
         res.json({
             ok: true,
             imgYoDB

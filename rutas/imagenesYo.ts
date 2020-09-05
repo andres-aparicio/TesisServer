@@ -1,6 +1,6 @@
 import { Router, Response } from 'express';
 import { verificarToken } from '../middlewares/autentificacion';
-import { ImagenesYo } from '../modelos/imagenesYo';
+import { ImagenesYo } from '../modelos/imagenyo';
 import FileSystemYo from '../clases/fileSystemYo';
 
 const yoRutas = Router();
