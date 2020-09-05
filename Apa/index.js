@@ -30,14 +30,14 @@ server.app.use('/sobreMi', sobremi_1.default);
 server.app.use('/tecnologia', tecnologias_1.default);
 server.app.use('/noticias', noticias_1.default);
 //Conectar DB
-let mongoDB;
-if (process.env.NODE_ENV === 'production') {
-    mongoDB = 'mongodb+srv://andres-apa:123@clusterapa.helky.mongodb.net/AndresDataBase';
-}
-else {
-    mongoDB = 'mongodb://localhost:27017/AndresDataBase';
-}
-mongoose_1.default.connect(mongoDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
+// let mongoDB: string;
+// if(process.env.NODE_ENV === 'production'){
+//     mongoDB = 'mongodb+srv://andres-apa:123@clusterapa.helky.mongodb.net/AndresDataBase';
+// }
+// else{
+//     mongoDB = 'mongodb://localhost:27017/AndresDataBase';
+// }
+mongoose_1.default.connect('mongodb+srv://andres-apa:123@clusterapa.helky.mongodb.net/AndresDataBase', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
     if (err)
         throw "err";
     console.log('Base de datos ONLINE');

@@ -31,15 +31,15 @@ server.app.use('/sobreMi', sobreMiRutas);
 server.app.use('/tecnologia', tecnologiasRutas);
 server.app.use('/noticias', noticiasRutas);
 //Conectar DB
-let mongoDB: string;
-if(process.env.NODE_ENV === 'production'){
-    mongoDB = 'mongodb+srv://andres-apa:123@clusterapa.helky.mongodb.net/AndresDataBase';
-}
-else{
-    mongoDB = 'mongodb://localhost:27017/AndresDataBase';
-}
+// let mongoDB: string;
+// if(process.env.NODE_ENV === 'production'){
+//     mongoDB = 'mongodb+srv://andres-apa:123@clusterapa.helky.mongodb.net/AndresDataBase';
+// }
+// else{
+//     mongoDB = 'mongodb://localhost:27017/AndresDataBase';
+// }
 mongoose.connect(
-    mongoDB,
+    'mongodb+srv://andres-apa:123@clusterapa.helky.mongodb.net/AndresDataBase',
     {useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology:true, useFindAndModify:false},
     (err) => {
         if(err) throw "err";
