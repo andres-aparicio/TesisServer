@@ -14,6 +14,8 @@ const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const sobremi_1 = __importDefault(require("./rutas/sobremi"));
 const tecnologias_1 = __importDefault(require("./rutas/tecnologias"));
 const noticias_1 = __importDefault(require("./rutas/noticias"));
+const express_1 = __importDefault(require("express"));
+const path_1 = __importDefault(require("path"));
 const server = new server_1.default();
 //Body Parser
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -23,6 +25,7 @@ server.app.use(cors_1.default({ origin: true, credentials: true }));
 //Fileupload
 server.app.use(express_fileupload_1.default());
 //Rutas
+server.app.use(express_1.default.static(path_1.default.join((__dirname + '/public'))));
 server.app.use('/usuario', usuario_1.default);
 server.app.use('/contacto', contacto_1.default);
 server.app.use('/uploadYo', imagenesYo_1.default);

@@ -9,7 +9,8 @@ import fileupload from 'express-fileupload';
 import sobreMiRutas from './rutas/sobremi';
 import tecnologiasRutas from './rutas/tecnologias';
 import noticiasRutas from './rutas/noticias';
-
+import express from 'express';
+import path from 'path';
 
 const server = new Server();
 
@@ -24,6 +25,7 @@ server.app.use(cors({origin:true, credentials:true}));
 server.app.use(fileupload());
 
 //Rutas
+server.app.use(express.static(path.join((__dirname + '/public'))));
 server.app.use('/usuario', usuarioRutas);
 server.app.use('/contacto', ContactoRutas);
 server.app.use('/uploadYo', yoRutas);
