@@ -1,6 +1,5 @@
 import Server from './clases/server';
 import usuarioRutas from './rutas/usuario';
-import mongoose, { mongo } from "mongoose";
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import ContactoRutas from './rutas/contacto';
@@ -13,6 +12,7 @@ import express from 'express';
 import path from 'path';
 
 const server = new Server();
+const mariadb = require('mariadb');
 
 //Body Parser
 server.app.use(bodyParser.urlencoded({extended: true}));
@@ -32,23 +32,25 @@ server.app.use('/uploadYo', yoRutas);
 server.app.use('/sobreMi', sobreMiRutas);
 server.app.use('/tecnologia', tecnologiasRutas);
 server.app.use('/noticias', noticiasRutas);
-//Conectar DB
-// let mongoDB: string;
-// if(process.env.NODE_ENV === 'production'){
-//     mongoDB = 'mongodb+srv://andres-apa:123@clusterapa.helky.mongodb.net/AndresDataBase';
-// }
-// else{
-//     mongoDB = 'mongodb://localhost:27017/AndresDataBase';
-// }
-mongoose.connect(
-    'mongodb+srv://andres-apa:123@clusterapa.helky.mongodb.net/AndresDataBase',
-    {useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology:true, useFindAndModify:false},
-    (err) => {
-        if(err) throw "err";
-        console.log('Base de datos ONLINE');
-    }
-)
 
-server.start(()=>{
-    console.log(`Servidor Andres corriendo en el puerto ${server.port}`);
-})
+const pool = mariadb.createPool({
+    host: 'localhost', 
+    port: '3307',
+    user:'root', 
+    password: '1234',
+    database: 'db_conciliacion',
+    connectionLimit: 5
+});
+async function asyncFunction() {
+    let conn;
+    try{
+        conn = await pool.getConnection();
+        const rows = await conn.query("SELECT * FROM departamento");
+        console.log(rows);
+    }catch(err){
+        throw err;
+    }finally{
+        if(conn) return conn.end();
+    }
+}
+asyncFunction();
