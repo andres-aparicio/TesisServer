@@ -1,18 +1,18 @@
 import Server from './clases/server';
-import usuarioRutas from './rutas/usuario';
+import usuarioRutas from './routes/usuario';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import ContactoRutas from './rutas/contacto';
-import yoRutas from './rutas/imagenesYo';
+import ContactoRutas from './routes/contacto';
+import yoRutas from './routes/imagenesYo';
 import fileupload from 'express-fileupload';
-import sobreMiRutas from './rutas/sobremi';
-import tecnologiasRutas from './rutas/tecnologias';
-import noticiasRutas from './rutas/noticias';
+import sobreMiRutas from './routes/sobremi';
+import tecnologiasRutas from './routes/tecnologias';
+//import noticiasRutas from './rutas/noticias';
 import express from 'express';
 import path from 'path';
 
 const server = new Server();
-const mariadb = require('mariadb');
+
 
 //Body Parser
 server.app.use(bodyParser.urlencoded({extended: true}));
@@ -31,26 +31,21 @@ server.app.use('/contacto', ContactoRutas);
 server.app.use('/uploadYo', yoRutas);
 server.app.use('/sobreMi', sobreMiRutas);
 server.app.use('/tecnologia', tecnologiasRutas);
-server.app.use('/noticias', noticiasRutas);
+//server.app.use('/noticias', noticiasRutas);
 
-const pool = mariadb.createPool({
-    host: 'localhost', 
-    port: '3307',
-    user:'root', 
-    password: '1234',
-    database: 'db_conciliacion',
-    connectionLimit: 5
-});
-async function asyncFunction() {
-    let conn;
-    try{
-        conn = await pool.getConnection();
-        const rows = await conn.query("SELECT * FROM departamento");
-        console.log(rows);
-    }catch(err){
-        throw err;
-    }finally{
-        if(conn) return conn.end();
-    }
-}
-asyncFunction();
+
+// async function asyncFunction() {
+//     let conn;
+//     try{
+//         conn = await pool.getConnection();
+//         const rows = await conn.query("SELECT * FROM departamento");
+//         console.log(rows);
+//     }catch(err){
+//         throw err;
+//     }finally{
+//         if(conn) return conn.end();
+//     }
+// }
+// asyncFunction()
+
+//module.exports pool
